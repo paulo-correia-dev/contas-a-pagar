@@ -14,31 +14,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController // Essa notação diz que essa classe é uma Controller, ou seja está dizendo que essa é uma aplicação REST
-@RequestMapping("/contas")
+@RequestMapping("/v1")
 public class ContasController {
 
     @Autowired
     ContaRepository repository;
 
-    @GetMapping
+    @GetMapping("/contas")
     public List<Conta> listarContas(){
 
         return repository.findAll();
     }
 
-    @PostMapping
+    @PostMapping("/contas")
     public Conta cadastrarConta(@RequestBody Conta conta){
 
         return repository.save(conta);
     }
 
-    @PutMapping
+    @PutMapping("/contas")
     public Conta atualizarConta(@RequestBody Conta conta){
 
         return repository.save(conta);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/contas/{id}")
     public void excluirConta(@PathVariable("id") Integer id){
         repository.deleteById(id);
     }
